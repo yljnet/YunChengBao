@@ -11,4 +11,9 @@
     <style name="TabText">
         <item name="android:textSize">20sp</item>
     </style>
+    <style name="ListLine">
+        <item name="android:background">#ffcccccc</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1.0dp</item>
+    </style>
 </resources>
