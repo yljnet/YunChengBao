@@ -2,8 +2,10 @@ package com.netsun.yunchengbao.activity;
 
 import android.app.ListFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -108,5 +110,15 @@ public class MissionFragment extends ListFragment implements AdapterView.OnItemC
         adapter.setSelectedPosition(-1);
         adapter.setSelectedPosition(position);
         adapter.notifyDataSetInvalidated();
+        Log.d("YunChengBao", "onItemClick: ");
+        Intent intent = new Intent("com.netsun.yunchengbao.ACTION_MISSION");
+        intent.addCategory("android.intent.category.DEFAULT");
+        Freight freight = freights.get(position);
+        intent.putExtra(Freight.KEY_ORIGIN,freight.getOrigin());
+        intent.putExtra(Freight.KEY_DEST,freight.getDestination());
+        intent.putExtra(Freight.KEY_GOODS,freight.getGoods());
+        intent.putExtra(Freight.KEY_WEIGHT,freight.getWeight());
+        intent.putExtra(Freight.KEY_TIME,freight.getTime());
+        startActivity(intent);
     }
 }

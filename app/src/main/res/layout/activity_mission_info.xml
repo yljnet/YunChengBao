@@ -10,6 +10,7 @@
         android:background="@color/text_doing">
 
         <ImageView
+            android:id="@+id/iv_back"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/back" />
@@ -84,10 +85,11 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <view
-        style="@style/ListLine"
-        android:layout_below="@id/ll_first" />
+    <LinearLayout
+        android:layout_below="@id/ll_first"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ffcccccc"/>
 
     <LinearLayout
         android:id="@+id/ll_sec"
@@ -95,7 +97,7 @@
         android:layout_height="55dp"
         android:layout_below="@id/ll_first"
         android:orientation="horizontal"
-        android:paddingTop="10dp">
+        android:paddingTop="1dp">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -137,7 +139,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="重量"
+                android:text="重量(吨)"
                 android:textColor="@color/tab_focuse" />
 
             <TextView
@@ -150,17 +152,18 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <view
-        style="@style/ListLine"
-        android:layout_below="@id/ll_sec" />
+    <LinearLayout
+        android:layout_below="@id/ll_sec"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ffcccccc"/>
 
     <LinearLayout
         android:id="@+id/ll_third"
         android:layout_width="match_parent"
         android:layout_height="55.0dp"
         android:layout_below="@id/ll_sec"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="1dp"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -180,6 +183,11 @@
             android:layout_weight="2"
             android:gravity="center" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_below="@id/ll_third"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ffcccccc"/>
 
     <Button
         android:id="@+id/button_todo"
@@ -192,9 +200,5 @@
         android:background="@color/text_doing"
         android:text="执行派车单"
         android:textColor="@color/white"
-        android:textSize="25sp" />
-
-    <view
-        style="@style/ListLine"
-        android:layout_below="@id/ll_third" />
+        android:textSize="20sp" />
 </RelativeLayout>

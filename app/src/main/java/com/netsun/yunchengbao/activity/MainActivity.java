@@ -1,10 +1,10 @@
 package com.netsun.yunchengbao.activity;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Window;
 
@@ -14,7 +14,7 @@ import com.netsun.yunchengbao.R;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener {
+public class MainActivity extends Activity implements BottomNavigationBar.OnTabSelectedListener {
     private BottomNavigationBar bottomNavigationBar;
     private ArrayList<android.app.Fragment> fragments;
     private int lastSelectedPosition = 0;

@@ -5,6 +5,13 @@ package com.netsun.yunchengbao.util;
  */
 
 public class Freight {
+    public static final String KEY_ID ="id";
+    public static final String KEY_ORIGIN="origin";
+    public static final String KEY_DEST="dest";
+    public static final String KEY_GOODS="goods";
+    public static final String KEY_WEIGHT="weight";
+    public static final String KEY_TIME="time";
+
     private int id;//派车单号
     private String origin;//出发地
     private String destination; //目的地
