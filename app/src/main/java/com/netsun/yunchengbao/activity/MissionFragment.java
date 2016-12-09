@@ -1,16 +1,15 @@
 package com.netsun.yunchengbao.activity;
 
-import android.app.ListFragment;
+import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.netsun.yunchengbao.R;
 import com.netsun.yunchengbao.util.Freight;
@@ -22,8 +21,8 @@ import java.util.ArrayList;
  * Created by Administrator on 2016/12/7.
  */
 
-public class MissionFragment extends ListFragment implements AdapterView.OnItemClickListener {
-    private ListView lvMission;
+public class MissionFragment extends Fragment implements AdapterView.OnItemClickListener {
+    private RecyclerView lvMission;
 
     private ArrayList<Freight> freights;
     private FreightAdapter adapter;
@@ -85,12 +84,13 @@ public class MissionFragment extends ListFragment implements AdapterView.OnItemC
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        lvMission = getListView();
+        lvMission = (RecyclerView)getActivity().findViewById(R.id.freight_list);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        lvMission.setLayoutManager(layoutManager);
         freights = new ArrayList<Freight>();
         initData();
-        adapter = new FreightAdapter(this.getActivity(), freights);
-        setListAdapter(adapter);
-        lvMission.setOnItemClickListener(this);
+        adapter = new FreightAdapter(freights);
+        lvMission.setAdapter(adapter);
     }
 
     @Nullable
@@ -107,18 +107,6 @@ public class MissionFragment extends ListFragment implements AdapterView.OnItemC
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        adapter.setSelectedPosition(-1);
-        adapter.setSelectedPosition(position);
-        adapter.notifyDataSetInvalidated();
-        Log.d("YunChengBao", "onItemClick: ");
-        Intent intent = new Intent("com.netsun.yunchengbao.ACTION_MISSION");
-        intent.addCategory("android.intent.category.DEFAULT");
-        Freight freight = freights.get(position);
-        intent.putExtra(Freight.KEY_ORIGIN,freight.getOrigin());
-        intent.putExtra(Freight.KEY_DEST,freight.getDestination());
-        intent.putExtra(Freight.KEY_GOODS,freight.getGoods());
-        intent.putExtra(Freight.KEY_WEIGHT,freight.getWeight());
-        intent.putExtra(Freight.KEY_TIME,freight.getTime());
-        startActivity(intent);
+
     }
 }

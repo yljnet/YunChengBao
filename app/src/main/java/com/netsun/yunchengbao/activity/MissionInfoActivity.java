@@ -1,19 +1,17 @@
 package com.netsun.yunchengbao.activity;
 
-import android.app.Activity;
-import android.app.Instrumentation;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.netsun.yunchengbao.R;
 
-public class MissionInfoActivity extends Activity implements View.OnClickListener{
+public class MissionInfoActivity extends AppCompatActivity implements View.OnClickListener{
     private Bundle bundle;
     private TextView tvDest,tvOrigin,tvGoods,tvWeight,tvTime;
     private ImageView ivBack;
@@ -21,8 +19,10 @@ public class MissionInfoActivity extends Activity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_mission_info);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.hide();
         tvDest = (TextView) findViewById(R.id.tv_dest);
         tvOrigin = (TextView) findViewById(R.id.tv_origin);
         tvGoods = (TextView) findViewById(R.id.tv_goods);
@@ -45,14 +45,15 @@ public class MissionInfoActivity extends Activity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_back:
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        // Instrumentation不能在主线程使用，故开一个线程
-                        Instrumentation instrumentation = new Instrumentation();
-                        instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);
-                    }
-                }).start();
+                finish();
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        // Instrumentation不能在主线程使用，故开一个线程
+//                        Instrumentation instrumentation = new Instrumentation();
+//                        instrumentation.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);
+//                    }
+//                }).start();
             break;
             case R.id.button_todo:
                 Intent intent = new Intent();

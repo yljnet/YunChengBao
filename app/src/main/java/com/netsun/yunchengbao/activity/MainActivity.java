@@ -1,20 +1,25 @@
 package com.netsun.yunchengbao.activity;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Window;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.netsun.yunchengbao.R;
+import com.netsun.yunchengbao.service.LocationService;
 
 import java.util.ArrayList;
 
-public class MainActivity extends Activity implements BottomNavigationBar.OnTabSelectedListener {
+public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener {
+    public static final String TAG = "MainActivity";
     private BottomNavigationBar bottomNavigationBar;
     private ArrayList<android.app.Fragment> fragments;
     private int lastSelectedPosition = 0;
@@ -23,8 +28,10 @@ public class MainActivity extends Activity implements BottomNavigationBar.OnTabS
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+            actionBar.hide();
         bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_bar);
         bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
         bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
@@ -83,5 +90,35 @@ public class MainActivity extends Activity implements BottomNavigationBar.OnTabS
     @Override
     public void onTabReselected(int position) {
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.add_item:
+                Intent intent = new Intent(MainActivity.this, LocationService.class);
+                startService(intent);
+                break;
+            case R.id.remove_item:
+                break;
+            case R.id.exit:
+                finish();//销毁活动
+                break;
+            default:
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    //保存数据，待活动重新生成时取回
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
     }
 }
