@@ -19,7 +19,7 @@ import com.netsun.yunchengbao.service.LocationService;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener {
-    public static final String TAG = "MainActivity";
+    public static final String TAG = "tag";
     private BottomNavigationBar bottomNavigationBar;
     private ArrayList<android.app.Fragment> fragments;
     private int lastSelectedPosition = 0;
@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null)
-            actionBar.hide();
+//        if (actionBar != null)
+//            actionBar.hide();
         bottomNavigationBar = (BottomNavigationBar) findViewById(R.id.bottom_bar);
         bottomNavigationBar.setMode(BottomNavigationBar.MODE_FIXED);
         bottomNavigationBar.setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC);
@@ -98,11 +98,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         return true;
     }
 
+    
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Log.d(TAG, "onOptionsItemSelected: ");
         switch (item.getItemId()) {
             case R.id.add_item:
-                Intent intent = new Intent(MainActivity.this, LocationService.class);
+                Intent intent = new Intent(this, LocationService.class);
                 startService(intent);
                 break;
             case R.id.remove_item:

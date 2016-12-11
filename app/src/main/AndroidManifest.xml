@@ -35,7 +35,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="RooperYejAnRrnf3ALBksbGCxdD5Ni2hf" />
+            android:value="SpaG1PYIZtV5t8aj8OycY2V54pgjaHyu" />
 
         <activity android:name=".activity.MainActivity">
             <intent-filter>
@@ -55,7 +55,7 @@
             android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login"></activity>
 
-        <service android:name=".service.LocationService">
+        <service android:name=".service.LocationService" android:enabled="true" android:exported="true">
 
         </service>
         <service
